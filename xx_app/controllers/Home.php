@@ -93,12 +93,11 @@ class Home extends CI_Controller
         $this->layout->set_body_attr(array('class' => 'animsition'));
 
         // load views and send data
-        // $this->load->view('themes/corastore/header');
-        // $this->load->view('themes/corastore/navigation');
-        // $this->load->view('themes/corastore/home-banner');
-        // $this->load->view('themes/corastore/home-index');
-        // $this->load->view('themes/corastore/footer');
-		echo 'hello';
+        $this->load->view('themes/corastore/navigation');
+        $this->load->view('themes/corastore/header');
+        $this->load->view('themes/corastore/home-banner');
+        $this->load->view('themes/corastore/home-index');
+        $this->load->view('themes/corastore/footer');
     }
 }
 
