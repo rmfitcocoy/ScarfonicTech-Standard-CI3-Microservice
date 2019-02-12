@@ -80,8 +80,6 @@
 	 define('ENVIRONMENT', $_SERVER['SERVER_ENVIRONMENT']); 
  }else if(isset($_ENV['SERVER_ENVIRONMENT'])){
 	 define('ENVIRONMENT', $_ENV['SERVER_ENVIRONMENT']); 
- }else if(isset( getenv("SERVER_ENVIRONMENT"))){
-	 define('ENVIRONMENT', getenv("SERVER_ENVIRONMENT")); 
  }else{
 	 define('ENVIRONMENT', 'development'); 
  }
