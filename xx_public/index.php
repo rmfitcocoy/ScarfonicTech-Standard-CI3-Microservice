@@ -76,8 +76,16 @@
 	defined('ROOT') OR define('ROOT',realpath(__DIR__ . DIRECTORY_SEPARATOR . '..'));
 
  
-	define('ENVIRONMENT', isset($_SERVER['SERVER_ENVIRONMENT']) ? $_SERVER['SERVER_ENVIRONMENT'] 
-						? $_ENV['SERVER_ENVIRONMENT'] ? getenv('SERVER_ENVIRONMENT') : 'development');
+ if(isset($_SERVER['SERVER_ENVIRONMENT'])){
+	 define('ENVIRONMENT', $_SERVER['SERVER_ENVIRONMENT']); 
+ }else if(isset($_ENV['SERVER_ENVIRONMENT'])){
+	 define('ENVIRONMENT', $_ENV['SERVER_ENVIRONMENT']); 
+ }else if(isset( getenv("SERVER_ENVIRONMENT"))){
+	 define('ENVIRONMENT', getenv("SERVER_ENVIRONMENT")); 
+ }else{
+	 define('ENVIRONMENT', 'development'); 
+ }
+	
 
 /*
  *---------------------------------------------------------------
