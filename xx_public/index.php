@@ -53,7 +53,30 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+ 
+/***************************************************************************
+ * 
+ * Custom environment load and dynamic lookup of the root file
+ * 
+ * @package	    environment_pack
+ * @category	instantation 
+ * @author  	Francisco Abayon <franz.noyaba@gmail.com>
+ * @copyright	August 25, 2018
+ * @since  		0.3.0
+ * @link		../environments.php
+ * @url			https://stackoverflow.com/questions/9149483/get-folder-up-one-level/9149495
+ * @url			https://stackoverflow.com/questions/7008830/why-defined-define-syntax-in-defining-a-constant
+ * @url			http://codebyjeff.com/blog/2013/10/setting-environment-vars-for-codeigniter-commandline
+ * @url			https://garrettstjohn.com/articles/loading-environment-specific-configuration-files-codeigniter/
+ * @example		define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? 
+ *				$_SERVER['CI_ENV'] : 'development');
+ * 					
+ ***************************************************************************/	
+	//Add global 'ROOT' and get current directory path with going up 1 level by '..'
+	defined('ROOT') OR define('ROOT',realpath(__DIR__ . DIRECTORY_SEPARATOR . '..'));
+
+ 
+	define('ENVIRONMENT', isset($_SERVER['SERVER_ENVIRONMENT']) ? $_SERVER['SERVER_ENVIRONMENT'] : 'development');
 
 /*
  *---------------------------------------------------------------
@@ -97,7 +120,7 @@ switch (ENVIRONMENT)
  * This variable must contain the name of your "system" directory.
  * Set the path if it is not in the same directory as this file.
  */
-	$system_path = 'xx_sys';
+	$system_path = ROOT . DIRECTORY_SEPARATOR . 'xx_sys';
 
 /*
  *---------------------------------------------------------------
@@ -114,8 +137,8 @@ switch (ENVIRONMENT)
  *
  * NO TRAILING SLASH!
  */
-	$application_folder = 'xx_app';
-
+	$application_folder = ROOT . DIRECTORY_SEPARATOR . 'xx_app';
+	
 /*
  *---------------------------------------------------------------
  * VIEW DIRECTORY NAME
